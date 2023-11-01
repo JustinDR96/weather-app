@@ -44,7 +44,7 @@ search.addEventListener("click", () => {
 
         case "Rain":
           image.src = "images/rain.png";
-          setFavicon("images/rain.png");
+          setFavicon = ("images/rain.png");
           updateTitle(city);
           break;
 
