@@ -1,13 +1,24 @@
 import { defineConfig } from "vite";
+import copy from "rollup-plugin-copy";
 
 export default defineConfig({
-  base: "/weather-app/",
+  base: "/weather-app/", // Remplacez '/chemin-de-votre-application/' par la base souhaitée
+
   build: {
     rollupOptions: {
       output: {
-        // Inclure le dossier "images" dans le chemin de base
-        assetFileNames: "images/",
+        dir: "dist",
       },
     },
   },
+
+  plugins: [
+  
+    copy({
+      targets: [ 
+        { src: "images", dest: "dist" }, // Copier le répertoire "images" dans "dist/images"
+      ],
+      hook: "writeBundle",
+    }),
+  ],
 });
