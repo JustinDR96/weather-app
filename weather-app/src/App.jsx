@@ -1,13 +1,17 @@
 import { useState } from "react";
-import WeatherApp from "./components/WeatherApp.jsx";
 import "./assets/styles/main.scss";
+import SearchBox from "./components/SearchBox.jsx";
+import WeatherBox from "./components/WeatherBox.jsx";
+import WeatherDetails from "./components/WeatherDetails.jsx";
+import NotFound from "./components/NotFound.jsx";
 function App() {
   return (
-    <>
-      <div>
-        <WeatherApp />
-      </div>
-    </>
+    <main className="container">
+      <SearchBox />
+      <WeatherBox />
+      <WeatherDetails />
+      <NotFound />
+    </main>
   );
 }
 

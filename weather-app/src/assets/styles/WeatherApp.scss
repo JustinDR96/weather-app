@@ -1,8 +1,8 @@
 .container {
   position: relative;
-  width: 400px;
+  width: 380px;
   height: 105px;
-  background: #fff;
+  background: var(--bg-weatherColor);
   padding: 28px 32px;
   overflow: hidden;
   border-radius: 18px;
