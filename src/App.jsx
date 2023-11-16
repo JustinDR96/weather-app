@@ -10,7 +10,7 @@ const App = () => {
   const [containerHeight, setContainerHeight] = useState("min-content");
 
   const handleSearch = async (city) => {
-    const APIKey = "0bd93777b73a9d55a014861565a6a41e";
+    const APIKey = import.meta.env.VITE_REACT_APP_API_KEY;
 
     try {
       const response = await fetch(
