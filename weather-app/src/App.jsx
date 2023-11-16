@@ -1,30 +1,43 @@
-import React, { useState } from "react";
-import "./assets/styles/main.scss"; // Make sure to import your main styles
+import React, { useState, useEffect } from "react";
 import SearchBox from "./components/SearchBox";
 import WeatherBox from "./components/WeatherBox";
 import WeatherDetails from "./components/WeatherDetails";
 import NotFound from "./components/NotFound";
-
-function App() {
+import "./assets/styles/main.scss";
+const App = () => {
   const [weatherData, setWeatherData] = useState(null);
   const [error, setError] = useState(false);
-  const [containerHeight, setContainerHeight] = useState("590px");
+  const [containerHeight, setContainerHeight] = useState("min-content");
 
-  const handleSearchResult = (data, hasError) => {
-    if (hasError) {
+  const handleSearch = async (city) => {
+    const APIKey = "0bd93777b73a9d55a014861565a6a41e";
+
+    try {
+      const response = await fetch(
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${APIKey}`
+      );
+      const json = await response.json();
+
+      if (json.cod === "404") {
+        setWeatherData(null);
+        setError(true);
+        setContainerHeight("400px");
+      } else {
+        setWeatherData(json);
+        setError(false);
+        setContainerHeight("590px");
+      }
+    } catch (error) {
+      console.error("Error fetching weather data:", error);
       setWeatherData(null);
       setError(true);
       setContainerHeight("400px");
-    } else {
-      setWeatherData(data);
-      setError(false);
-      setContainerHeight("590px");
     }
   };
 
   return (
     <main className="container" style={{ height: containerHeight }}>
-      <SearchBox onSearchResult={handleSearchResult} />
+      <SearchBox onSearch={handleSearch} />
       {error ? (
         <NotFound />
       ) : (
@@ -35,6 +48,6 @@ function App() {
       )}
     </main>
   );
-}
+};
 
 export default App;
