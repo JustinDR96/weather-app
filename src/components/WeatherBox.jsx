@@ -4,15 +4,15 @@ const WeatherBox = ({ weatherData }) => {
   const getWeatherImage = () => {
     switch (weatherData.weather[0].main) {
       case "Clear":
-        return "/images/clear.png";
+        return "./images/clear.png";
       case "Rain":
-        return "/images/rain.png";
+        return "./images/rain.png";
       case "Snow":
-        return "/images/snow.png";
+        return "./images/snow.png";
       case "Clouds":
-        return "/images/cloud.png";
+        return "./images/cloud.png";
       case "Mist":
-        return "/images/mist.png";
+        return "./images/mist.png";
       default:
         return "";
     }
